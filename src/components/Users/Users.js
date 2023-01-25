@@ -1,19 +1,28 @@
-import {User} from "../User/User";
 import {useState, useEffect} from 'react';
+
 import {axiosService} from "../../services/axiosService";
+import {User} from "../User/User";
 
 const Users = () => {
-	const {users, setUsers} = useState([])
+
+	const [users, setUsers] = useState([])
+	const [userDetails, setUserDetails] = useState(null)
 
 	useEffect(()=>{
-		axiosService.get('/users').then(value=>console.log(value))
+		axiosService.get('/users').then(value=>value.data).then(value => setUsers([ ...value]))
 	},[])
 
 
 
 		return (
 			<div>
-				{users.map(user=> <Users key={user.id} user={user}/>)}
+				<h1>UserDetails:</h1>
+				{userDetails && <div>{userDetails.name}- {userDetails.email}</div>}
+
+				<hr/>
+
+				<h1>Users:</h1>
+				{users.map(user=> <User key={user.id} user={user} setUserDetails={setUserDetails}/>)}
 			</div>
 		);
 	}

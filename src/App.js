@@ -1,10 +1,15 @@
 import React from 'react';
-import {Users} from "./components/Users/Users";
+import {Rockets} from "./components/Rockets/Rockets";
+;
+// import {Users} from "./components/Users/Users";
 
 const App = () => {
+
+
 	return (
 		<div>
-          <Users/>
+			<Rockets/>
+			{/*<Users/>*/}
 		</div>
 	);
 };
